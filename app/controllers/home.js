@@ -10,6 +10,7 @@ router.get('/', (req, res, next) => {
   const articles = [new Article(), new Article()];
   res.render('index', {
     title: 'Generator-Express MVC',
-    articles: articles
+    articles: articles,
+    saysomething: ''
   });
 });

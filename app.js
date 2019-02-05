@@ -22,8 +22,8 @@ app.post('/send', (req, res) => {
   const mailOptions = {
     from: 'welotestemailsender@gmail.com', // sender address
     to: req.body.email, // list of receivers
-    subject: 'Subject of your email', // Subject line
-    html: '<p>Works</p>'// plain text body
+    subject: req.body.subject, // Subject line
+    html: '<p>' + req.body.content + '</p>'// plain text body
   };
 
   transporter.sendMail(mailOptions, function (err, info) {
@@ -31,6 +31,11 @@ app.post('/send', (req, res) => {
        console.log(err)
      else
        console.log(info);
+  });
+
+  res.render('index', {
+    title: 'Generator-Express MVC',
+    saysomething: 'Email sent to ' + req.body.email
   });
 });
 
