@@ -33,7 +33,7 @@ var transporter = nodemailer.createTransport({
 // });
 
 app.post('/send', (req, res) => {
-  console.log(req.body);
+  console.log(req.body.email);
 });
 
 module.exports = require('./config/express')(app, config);
