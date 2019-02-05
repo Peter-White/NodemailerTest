@@ -23,7 +23,14 @@ app.post('/send', (req, res) => {
     from: 'welotestemailsender@gmail.com', // sender address
     to: req.body.email, // list of receivers
     subject: req.body.subject, // Subject line
-    html: '<p>' + req.body.content + '</p>'// plain text body
+    html: '<p>' + req.body.content + '</p>', // plain text body
+    attachments: [
+                  {
+                    filename: 'test',
+                    path: 'monty.jpg'
+                  }
+                 ]
+
   };
 
   transporter.sendMail(mailOptions, function (err, info) {
