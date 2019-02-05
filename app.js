@@ -18,22 +18,20 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-// const mailOptions = {
-//   from: 'welotestemailsender@gmail.com', // sender address
-//   to: 'pwhitedeveloper@gmail.com', // list of receivers
-//   subject: 'Subject of your email', // Subject line
-//   html: '<p>Works</p>'// plain text body
-// };
-
-// transporter.sendMail(mailOptions, function (err, info) {
-//    if(err)
-//      console.log(err)
-//    else
-//      console.log(info);
-// });
-
 app.post('/send', (req, res) => {
-  console.log(req.body.email);
+  const mailOptions = {
+    from: 'welotestemailsender@gmail.com', // sender address
+    to: req.body.email, // list of receivers
+    subject: 'Subject of your email', // Subject line
+    html: '<p>Works</p>'// plain text body
+  };
+
+  transporter.sendMail(mailOptions, function (err, info) {
+     if(err)
+       console.log(err)
+     else
+       console.log(info);
+  });
 });
 
 module.exports = require('./config/express')(app, config);
