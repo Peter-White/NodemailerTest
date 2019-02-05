@@ -1,10 +1,14 @@
 
-
 const express = require('express');
 const config = require('./config/config');
-
+const bodyParser = require('body-parser');
+const app = express();
 'use strict';
 var nodemailer = require('nodemailer');
+
+// Body Parser Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 var transporter = nodemailer.createTransport({
  service: 'gmail',
@@ -14,21 +18,23 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-const mailOptions = {
-  from: 'welotestemailsender@gmail.com', // sender address
-  to: 'pwhitedeveloper@gmail.com', // list of receivers
-  subject: 'Subject of your email', // Subject line
-  html: '<p>Works</p>'// plain text body
-};
+// const mailOptions = {
+//   from: 'welotestemailsender@gmail.com', // sender address
+//   to: 'pwhitedeveloper@gmail.com', // list of receivers
+//   subject: 'Subject of your email', // Subject line
+//   html: '<p>Works</p>'// plain text body
+// };
 
-transporter.sendMail(mailOptions, function (err, info) {
-   if(err)
-     console.log(err)
-   else
-     console.log(info);
+// transporter.sendMail(mailOptions, function (err, info) {
+//    if(err)
+//      console.log(err)
+//    else
+//      console.log(info);
+// });
+
+app.post('/send', (req, res) => {
+  console.log(req.body);
 });
-
-const app = express();
 
 module.exports = require('./config/express')(app, config);
 

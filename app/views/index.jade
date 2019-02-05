@@ -2,4 +2,12 @@ extends layout
 
 block content
   h1= title
-  p I changed something
+  p.test I changed something
+  form(method='POST', action='send')
+      p
+        label Email Address
+        br
+        input(type='email', name='email')
+      p.full
+        button(type='submit') Submit
+
