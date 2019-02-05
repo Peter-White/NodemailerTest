@@ -27,7 +27,7 @@ app.post('/send', (req, res) => {
     attachments: [
                   {
                     filename: 'test',
-                    path: 'monty.jpg',
+                    path: './public/img/monty.jpg',
                     contentType: 'image/jpeg'
                   }
                  ]
