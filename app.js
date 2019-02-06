@@ -23,12 +23,19 @@ app.post('/send', (req, res) => {
     from: 'welotestemailsender@gmail.com', // sender address
     to: req.body.email, // list of receivers
     subject: req.body.subject, // Subject line
-    html: '<p>' + req.body.content + '</p>', // plain text body
+    html: '<p>' + req.body.content + '</p>' + 
+          '<img src="cid:unique@nodemailer.com">', // plain text body
     attachments: [
                   {
                     filename: 'test',
                     path: './public/img/monty.jpg',
                     contentType: 'image/jpeg'
+                  },
+                                    {
+                    filename: 'test2',
+                    path: './public/img/monty.jpg',
+                    contentType: 'image/jpeg',
+                    cid: 'unique@nodemailer.com'
                   }
                  ]
 
